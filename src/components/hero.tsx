@@ -130,22 +130,15 @@ const TypingText = ({ text, speed = 80, className = '' }: TypingTextProps) => {
 
 // Hero section
 export function Hero() {
-  const { avatar, about, links } = data
-
-  const cleanParagraph = about.description
-    .split('\n')
-    .filter(Boolean)
-    .map((line) => line.replace(/^[-•]\s*/, ''))
-    .join(' ')
-
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       className="relative w-full pt-8 pb-16 sm:pt-20 sm:pb-24 md:pt-16 md:pb-32 overflow-hidden min-h-screen"
+      style={{ paddingBottom: '6rem' }} // Inline style for mobile
     >
-      <div className="relative w-full max-w-6xl lg:max-w-7xl mx-auto flex flex-col items-center gap-10">
+      <div className="relative w-full max-w-6xl lg:max-w-7xl mx-auto flex flex-col items-center gap-10 pb-8 md:pb-12">
         {/* Avatar centered for all devices */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -189,12 +182,12 @@ export function Hero() {
             >
               <Avatar className="size-40 md:size-48 shadow-xl border-4 border-white dark:border-neutral-900 relative z-10 transition-transform duration-150">
                 <AvatarImage 
-                  alt={avatar.name} 
+                  alt={data.avatar.name} 
                   src="/assets/avatar.png"
                   className="object-cover"
                 />
                 <AvatarFallback className="font-mono font-bold">
-                  {avatar.initials}
+                  {data.avatar.initials}
                 </AvatarFallback>
               </Avatar>
             </motion.div>
@@ -212,26 +205,30 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 mb-8 md:mb-12"
           >
             <Button
               variant='default'
               size={null}
-              className='font-mono font-bold text-sm px-6 py-3 rounded-full hover:scale-110 transition-all ease-in-out duration-300 shadow-2xl bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white border-0 hover:shadow-pink-500/50 hover:shadow-2xl'
+              className='relative font-mono font-bold text-sm px-6 py-3 rounded-full hover:scale-110 transition-all ease-in-out duration-300 shadow-2xl bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white border-0 hover:shadow-pink-500/50 hover:shadow-2xl overflow-hidden group'
               asChild
             >
               <a
                 href="https://linkedin.com/in/harshhaa-vardhan-reddy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 relative z-10"
               >
+                {/* Glowing background effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-500 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-300 via-pink-300 to-purple-400 opacity-0 group-hover:opacity-75 blur-2xl transition-opacity duration-700 -z-20" />
+                
                 <motion.span 
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                  className="size-3 bg-yellow-300 rounded-full shadow-lg shadow-yellow-300/70 animate-pulse"
+                  className="size-3 bg-yellow-300 rounded-full shadow-lg shadow-yellow-300/70 animate-pulse group-hover:shadow-yellow-300/100 group-hover:shadow-xl transition-shadow duration-300"
                 />
-                <span className="font-semibold">😉 HOW YOU DOINGHH..? 😉</span>
+                <span className="font-semibold relative z-10">😉 HOW YOU DOINGHH..? 😉</span>
               </a>
             </Button>
           </motion.div>
@@ -241,31 +238,41 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="w-full"
+          className="flex items-center gap-3 mb-8 md:mb-12" // Added margin-bottom here
+
         >
           <div
             className="w-full flex flex-col font-mono gap-2.5 sm:gap-3 text-white text-pretty p-6 md:p-8 rounded-2xl border border-white/20 shadow-2xl backdrop-blur-lg bg-gradient-to-br from-white/20 via-white/10 to-white/5"
           >
-            <p className="font-semibold text-lg md:text-xl text-white">{about.title}</p>
-            <h3 className="text-base md:text-lg leading-relaxed opacity-90 text-white">{cleanParagraph}</h3>
+            <p className="font-semibold text-lg md:text-xl text-white">{data.about.title}</p>
+            <h3 className="text-base md:text-lg leading-relaxed opacity-90 text-white">{data.about.description}</h3>
           </div>
         </motion.div>
-        {/* Social Links: pill-shaped, accent color */}
-        <nav className="w-full flex flex-wrap gap-3 mt-4 justify-center">
-          {links.map((link, index) => (
-            <a
-              key={link.title}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={link.title}
-              className="flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-md hover:scale-105 transition-all duration-300 border-0"
-            >
-              <link.icon className="size-5 stroke-[1.5] text-white" />
-              <span>{link.title}</span>
-            </a>
-          ))}
-        </nav>
+        {/* Social Links: pill-shaped, accent color - Consistent styling */}
+        <div className="social-buttons-wrapper w-full px-4 md:px-0 mb-8 md:mb-12">
+          <nav className="w-full">
+            <div className="flex flex-wrap gap-2 md:gap-3 justify-center max-w-full">
+              {data.links.map((link, index) => (
+                <motion.a
+                  key={link.title}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-1.5 md:py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-md hover:scale-105 transition-all duration-300 border-0 text-xs md:text-sm min-w-0 flex-shrink-0 relative z-10"
+                >
+                  <link.icon className="size-4 md:size-5 stroke-[1.5] text-white flex-shrink-0" />
+                  <span className="whitespace-nowrap">{link.title}</span>
+                </motion.a>
+              ))}
+            </div>
+          </nav>
+        </div>
       </div>
     </motion.section>
   )
