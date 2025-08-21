@@ -17,9 +17,9 @@ export function Footer() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full px-4 py-8 md:py-12"
+      className="w-full px-4 py-8 md:py-12 mt-0 md:mt-8" // Added mobile-specific margin
     >
-      <div className="container mx-auto max-w-7xl bg-white/20 dark:bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 transition-all duration-300 hover:shadow-xl hover:bg-white/30 dark:hover:bg-white/15">
+      <div className="container mx-auto max-w-7xl bg-white/20 dark:bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 transition-all duration-300 hover:shadow-xl hover:bg-white/30 dark:hover:bg-white/15">
         {/* Left Section */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}

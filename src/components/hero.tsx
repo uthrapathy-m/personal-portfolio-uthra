@@ -248,31 +248,34 @@ export function Hero() {
             <h3 className="text-base md:text-lg leading-relaxed opacity-90 text-white">{data.about.description}</h3>
           </div>
         </motion.div>
-        {/* Social Links: pill-shaped, accent color - Consistent styling */}
-        <div className="social-buttons-wrapper w-full px-4 md:px-0 mb-8 md:mb-12">
-          <nav className="w-full">
-            <div className="flex flex-wrap gap-2 md:gap-3 justify-center max-w-full">
-              {data.links.map((link, index) => (
-                <motion.a
-                  key={link.title}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 * index }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-1.5 md:py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-md hover:scale-105 transition-all duration-300 border-0 text-xs md:text-sm min-w-0 flex-shrink-0 relative z-10"
-                >
-                  <link.icon className="size-4 md:size-5 stroke-[1.5] text-white flex-shrink-0" />
-                  <span className="whitespace-nowrap">{link.title}</span>
-                </motion.a>
-              ))}
-            </div>
+        {/* Social Links - Consistent oval purple buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 1.0 }}
+          className="w-full max-w-4xl"
+        >
+          <nav className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+            {data.links.map((link, index) => (
+              <motion.a
+                key={link.title}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.1 + 0.1 * index }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex min-w-0 flex-shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-r from-primary to-secondary px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm md:px-5"
+              >
+                <link.icon className="h-3 w-3 flex-shrink-0 stroke-[1.5] text-white sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                <span className="whitespace-nowrap text-white">{link.title}</span>
+              </motion.a>
+            ))}
           </nav>
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   )

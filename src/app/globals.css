@@ -1,11 +1,18 @@
+/* =========================================================
+   Tailwind Directives
+   ======================================================= */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Google Fonts Import */
+/* =========================================================
+   Google Fonts
+   ======================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Anton:wght@400&display=swap');
 
-/* Custom Color Palette Variables */
+/* =========================================================
+   Root Color Palette
+   ======================================================= */
 :root {
   --color-primary: #1A2A80;
   --color-secondary: #3B38A0;
@@ -14,33 +21,106 @@
   --color-background: #090040;
 }
 
-/* Animated Title Styles */
+/* =========================================================
+   Keyframes
+   ======================================================= */
 @keyframes showTopText {
-  0% { 
-    opacity: 0;
-    transform: translateY(100%); 
-  }
-  40%, 60% { 
-    opacity: 0.8;
-    transform: translateY(50%); 
-  }
-  100% { 
-    opacity: 1;
-    transform: translateY(0); 
-  }
-}
-
+  0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+        40%,
+        60% {
+          opacity: 0.8;
+          transform: translateY(50%);
+        }
+  
+                100% {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+                }
 @keyframes showBottomText {
-  0% { 
+  0% {
     opacity: 0;
-    transform: translateY(-100%); 
+    transform: translateY(-100%);
   }
-  100% { 
+
+        100% {
     opacity: 1;
-    transform: translateY(0); 
+    transform: translateY(0);
   }
 }
+@keyframes blink {
 
+  0%,
+    50% {
+      opacity: 1;
+    }
+  
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse-glow {
+  
+    0%,
+    100% {
+      box-shadow:
+        0 0 20px rgba(249, 115, 22, .6),
+        0 0 40px rgba(236, 72, 153, .4),
+        0 0 60px rgba(147, 51, 234, .3),
+        0 4px 20px rgba(0, 0, 0, .2);
+    }
+  
+    50% {
+      box-shadow:
+        0 0 25px rgba(249, 115, 22, .8),
+        0 0 50px rgba(236, 72, 153, .6),
+        0 0 75px rgba(147, 51, 234, .5),
+        0 4px 25px rgba(0, 0, 0, .3);
+    }
+  }
+  
+  @keyframes dot-pulse {
+  
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow:
+        0 0 10px rgba(253, 224, 71, .8),
+        0 0 20px rgba(253, 224, 71, .6),
+        0 0 30px rgba(253, 224, 71, .4);
+    }
+  
+    50% {
+      transform: scale(1.1);
+      box-shadow:
+        0 0 15px rgba(253, 224, 71, 1),
+        0 0 30px rgba(253, 224, 71, .8),
+        0 0 45px rgba(253, 224, 71, .6);
+    }
+  }
+  
+  @keyframes float-gentle {
+  
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+      opacity: .6;
+    }
+  
+    50% {
+      transform: translateY(-10px) translateX(5px);
+      opacity: .8;
+    }
+  }
+  
+  /* =========================================================
+       Animated Title
+       ======================================================= */
 .animated-title {
   color: white;
   font-family: var(--font-geist-sans), Arial, sans-serif;
@@ -52,7 +132,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px 0 !important;
-    margin-top: -1rem !important;
+  margin-top: -1rem !important;
 }
 
 .animated-title > div {
@@ -72,25 +152,21 @@
   position: relative;
   text-align: center;
   color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, .5);
 }
 
 .animated-title > div.text-top div {
   font-size: clamp(2.5rem, 10vw, 5rem) !important;
-  animation: showTopText 1s ease-out;
-  animation-delay: 0.5s;
-  animation-fill-mode: both;
-  font-family: 'Oswald', 'Anton', 'Impact', 'Arial Black', -apple-system, BlinkMacSystemFont, sans-serif;
+  animation: showTopText 1s ease-out 0.5s both;
+    font-family: 'Oswald', 'Anton', 'Impact', 'Arial Black', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: .02em;
 }
 
 .animated-title > div.text-bottom div {
   font-size: clamp(1rem, 4vw, 1.5rem) !important;
-  animation: showBottomText 0.5s ease-out;
-  animation-delay: 1.75s;
-  animation-fill-mode: both;
-  opacity: 0.9;
+  animation: showBottomText 0.5s ease-out 1.75s both;
+    opacity: .9;
   line-height: 1.2;
   white-space: nowrap;
 }
@@ -106,11 +182,13 @@
   top: 0;
 }
 
-/* Add border only to the text content */
-.animated-title > div.text-top div {
-  position: relative;
+.animated-title>div.text-bottom {
+  bottom: 0;
 }
 
+.animated-title>div.text-top div {
+  position: relative;
+}
 .animated-title > div.text-top div::after {
   content: '';
   position: absolute;
@@ -119,11 +197,10 @@
   transform: translateX(-50%);
   width: 100%;
   height: 4px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, .3);
   border-radius: 2px;
 }
 
-/* Fallback for browsers that don't support animations */
 @media (prefers-reduced-motion: reduce) {
   .animated-title > div.text-top div {
     animation: none;
@@ -131,56 +208,39 @@
   }
 }
 
-.animated-title > div.text-top div span:first-child {
-  opacity: 0.8;
+.animated-title>div.text-top div span:first-child {
+  opacity: .8;
 }
 
-.animated-title > div.text-bottom {
-  bottom: 0;
-}
-
-/* Typewriter cursor animation */
 .typewriter-cursor {
   animation: blink 1s infinite;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, .8);
   display: inline-block;
   line-height: 1;
   margin-left: 2px;
 }
 
-/* Yellow dot styling */
+/* Tailwind yellow override for emphasis dot */
 .text-yellow-400 {
   color: #facc15 !important;
   font-weight: bold;
 }
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-@media (max-width: 768px) {
-  .animated-title {
-    min-height: 120px !important;
-      padding: 5px 0 !important;
-  }
-  
-  .animated-title > div div {
-    font-size: clamp(1.5rem, 10vw, 2.5rem);
-  }
-}
-
+/* =========================================================
+   Tailwind Base Layer Theme Vars
+   ======================================================= */
 @layer base {
   html,
-  body {
+    body {
     background-color: var(--color-background);
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color .3s ease, color .3s ease, border-color .3s ease;
   }
 
   html {
     transition-property: color, background-color, border-color;
-    transition-duration: 0.3s;
+    transition-duration: .3s;
     transition-timing-function: ease;
+    scroll-behavior: smooth;
   }
 
   :root {
@@ -230,6 +290,7 @@
 
   * {
     border-color: hsl(var(--border));
+    transition: color .2s ease, background-color .2s ease;
   }
 
   body {
@@ -238,58 +299,93 @@
   }
 }
 
-/* prevent transition flickers on theme switch */
-* {
-  transition: color 0.2s ease, background-color 0.2s ease;
-}
-
+/* =========================================================
+   Global Helpers
+   ======================================================= */
 html.transitioning * {
   transition: none !important;
 }
 
-/* Navbar height adjustment */
-nav, .navbar, header {
-  min-height: 50px !important;
-  max-height: 60px !important;
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
+html,
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
 }
 
-.navbar-container, nav > div, header > div {
-  padding-top: 0.25rem !important;
-  padding-bottom: 0.25rem !important;
-  height: 50px !important;
-  min-height: 50px !important;
+/* =========================================================
+   Buttons (class-combination selectors)
+   ======================================================= */
+.bg-gradient-to-r.from-primary.to-secondary,
+a.bg-gradient-to-r.from-primary.to-secondary,
+button.bg-gradient-to-r.from-primary.to-secondary {
+  background: linear-gradient(to right, #1A2A80, #3B38A0) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 0.375rem 0.75rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06) !important;
 }
 
-.py-4 {
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
+.bg-gradient-to-r.from-primary.to-secondary span,
+.bg-gradient-to-r.from-primary.to-secondary svg {
+  color: #fff !important;
+  stroke: #fff !important;
+  fill: #fff !important;
 }
 
-.py-6 {
-  padding-top: 0.75rem !important;
-  padding-bottom: 0.75rem !important;
+.bg-gradient-to-r.from-primary.to-secondary:hover {
+  filter: brightness(1.1) saturate(1.1) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05) !important;
 }
 
-.navbar-nav, .nav-links, nav ul, nav ol {
-  gap: 0.75rem !important;
-  align-items: center !important;
+.rounded-full,
+.rounded-full.bg-gradient-to-r,
+a.rounded-full,
+button.rounded-full {
+  border-radius: 9999px !important;
 }
 
-.navbar-brand, nav h1, nav h2 {
-  font-size: 1.125rem !important;
-  line-height: 1.25 !important;
-  padding: 0.125rem 0 !important;
-  margin: 0 !important;
+@media (min-width: 640px) {
+  .bg-gradient-to-r.from-primary.to-secondary {
+    padding: 0.5rem 1.25rem !important;
+  }
 }
 
-nav .flex, header .flex {
-  min-height: 50px !important;
-  align-items: center !important;
+@media (min-width: 768px) {
+  .bg-gradient-to-r.from-primary.to-secondary {
+    padding: 0.5rem 1.5rem !important;
+  }
 }
 
-/* Hide theme toggle */
+/* Fancy gradient button hover glow */
+.bg-gradient-to-r.from-orange-500.via-pink-500.to-purple-600 {
+  position: relative;
+  overflow: hidden;
+  transition: all .3s ease;
+}
+
+.bg-gradient-to-r.from-orange-500.via-pink-500.to-purple-600:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15) saturate(1.3);
+}
+
+.group:hover .bg-gradient-to-r.from-orange-500 {
+  animation: pulse-glow 2s ease-in-out infinite;
+  filter: brightness(1.1) saturate(1.2);
+}
+
+.group:hover .bg-yellow-300 {
+  box-shadow:
+    0 0 10px rgba(253, 224, 71, .8),
+    0 0 20px rgba(253, 224, 71, .6),
+    0 0 30px rgba(253, 224, 71, .4) !important;
+  animation: dot-pulse 1.5s ease-in-out infinite;
+}
+
+/* =========================================================
+   Navbar / Header
+   ======================================================= */
 .theme-toggle,
 .dark-mode-toggle,
 .light-mode-toggle,
@@ -297,40 +393,26 @@ button[aria-label*="theme"],
 button[aria-label*="dark"],
 button[aria-label*="light"],
 [data-theme-toggle],
-.mode-toggle {
-  display: none !important;
-  visibility: hidden !important;
-}
-
+.mode-toggle,
 .lucide-moon,
 .lucide-sun,
 svg[data-icon="moon"],
-svg[data-icon="sun"] {
-  display: none !important;
-}
-
+svg[data-icon="sun"],
 nav button[type="button"]:last-child,
-header button[type="button"]:last-child {
-  display: none !important;
-}
-
+header button[type="button"]:last-child,
 .btn-theme,
 .theme-switcher,
 .color-mode-toggle {
   display: none !important;
+  visibility: hidden !important;
 }
 
-/* Enhanced navbar blur effects */
 header {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: backdrop-filter 0.3s ease;
+  transition: backdrop-filter .3s ease;
   margin: -6px -12px;
   padding: 6px 12px;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 @supports (backdrop-filter: blur(1px)) {
@@ -342,30 +424,30 @@ html {
 
 @supports not (backdrop-filter: blur(1px)) {
   header>div {
-    background: rgba(255, 255, 255, 0.4) !important;
-  }
-
-  .dark header>div {
-    background: rgba(0, 0, 0, 0.4) !important;
-  }
+      background: rgba(255, 255, 255, .4) !important;
+      }
+      
+      .dark header>div {
+      background: rgba(0, 0, 0, .4) !important;
+      }
 }
 
 body::before {
   content: '';
   position: fixed;
   top: -5px;
-  left: -20px;
-  right: -20px;
+    left: -20px;
+      right: -20px;
   height: 80px;
   background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, .08) 0%,
+      rgba(255, 255, 255, .04) 50%,
       transparent 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 49;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity .3s ease;
   border-radius: 0 0 16px 16px;
 }
 
@@ -373,24 +455,26 @@ header::before {
   content: '';
   position: absolute;
   top: -8px;
-  left: -16px;
-  right: -16px;
-  bottom: -8px;
+    left: -16px;
+      right: -16px;
+      bottom: -8px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: -1;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.02);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, .02);
+    transition: all .3s ease;
 }
 
 header.scrolled::before {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, .05);
 }
 
-/* Hero section positioning */
+/* =========================================================
+   Hero Section
+   ======================================================= */
 .hero-section,
 section.relative.w-full {
   padding-top: 2rem !important;
@@ -401,24 +485,17 @@ section.relative.w-full {
 .relative.w-full.pt-20.pb-24,
 .relative.w-full.pt-16.pb-32 {
   padding-top: 50px !important;
-  padding-bottom: 2rem !important;
+  padding-bottom: 4rem !important;
 }
 
-.min-h-screen {
-  padding-top: 50px !important;
-  display: flex !important;
-  align-items: flex-start !important;
-  justify-content: center !important;
-  min-height: calc(100vh - 50px) !important;
-  padding-bottom: 0 !important;
-}
-
+.min-h-screen,
 .overflow-hidden.min-h-screen {
   display: flex !important;
   align-items: flex-start !important;
   justify-content: center !important;
   padding-top: 50px !important;
-  min-height: calc(100vh - 30px) !important;
+  min-height: calc(100vh - 50px) !important;
+  padding-bottom: 0 !important;
 }
 
 .max-w-6xl.lg\:max-w-7xl {
@@ -434,696 +511,431 @@ section.relative.w-full {
   margin-top: -1rem !important;
 }
 
-/* Mobile optimization */
+.max-w-6xl,
+.max-w-7xl {
+  max-width: calc(100vw - 32px) !important;
+}
+@media (min-width: 768px) {
+  .max-w-6xl {
+    max-width: 72rem !important;
+  }
+                .max-w-7xl {
+                  max-width: 80rem !important;
+        
+  }
+
+/* =========================================================
+   Timeline Gradient Border (shared)
+   ======================================================= */
+.border-gradient-to-b {
+  position: relative;
+  border-left: none !important;
+}
+.border-gradient-to-b::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      #22d3ee 0%,
+      #3b82f6 25%,
+      #8b5cf6 50%,
+      #ec4899 75%,
+      #f59e0b 100%);
+  border-radius: 1px;
+  opacity: 0.8;
+}
+
+/* =========================================================
+   Floating Orbs + Glassmorphic Text
+   ======================================================= */
+.animate-float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-float-gentle-delayed {
+  animation: float-gentle 4s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.glassmorphic-text {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+  color: rgba(255, 255, 255, .95);
+}
+
+.dark .glassmorphic-text {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  color: rgba(255, 255, 255, .9);
+}
+}
+
+/* =========================================================
+   Mobile Responsive (<= 768px)
+   ======================================================= */
 @media (max-width: 768px) {
   .animated-title {
     min-height: 120px !important;
     padding: 5px 0 !important;
   }
+                .animated-title>div div {
+                  font-size: clamp(1.5rem, 10vw, 2.5rem);
+                }
 
-  .animated-title>div div {
-    font-size: clamp(1.5rem, 10vw, 2.5rem);
+                .overflow-hidden.min-h-screen,
+                .min-h-screen {
+                  padding-bottom: 6rem !important;
+                  min-height: auto !important;
   }
+
+                nav.w-full.px-4,
+                .social-links-container,
+                .social-buttons-wrapper {
+                  margin-bottom: 4rem !important;
+                  padding-bottom: 3rem !important;
+                  z-index: 10 !important;
+                  position: relative !important;
+  }
+
+                .max-w-6xl.lg\:max-w-7xl {
+                  margin-bottom: 4rem !important;
+                  padding-bottom: 3rem !important;
+  }
+
+                /* Remove glassy effects on small controls */
+                .px-2.py-1\.5.text-xs,
+                .hover\:bg-white\/20,
+                .bg-white\/25,
+                .bg-white\/10,
+                .inline-block.px-2,
+                .inline-block.px-3,
+                nav a,
+                nav .group,
+                .rounded-md {
+                  background: transparent !important;
+                  border: none !important;
+                  border-radius: 0 !important;
+                  backdrop-filter: none !important;
+                }
+
+                /* Prevent section overlap */
+                section+section,
+                .hero-section+section,
+                .hero-section+div {
+                  margin-top: 4rem !important;
+                }
+
+                /* Footer spacing fixes */
+                footer.w-full.px-4.py-8 {
+                  padding-top: 1rem !important;
+                  margin-top: 0 !important;
+  }
+                section:nth-last-child(2),
+                .section:nth-last-child(2) {
+                  margin-bottom: 0 !important;
+                  padding-bottom: 1rem !important;
+                }
+                  motion-footer,
+                  [style*="motion"] footer {
+                    margin-top: 0 !important;
+                    padding-top: 1rem !important;
+                  }
+                .container.mx-auto.max-w-7xl,
+                footer .container {
+                  margin-top: 0 !important;
+                  padding-top: 0 !important;
+  }
+                footer::before {
+                  display: none !important;
+                }
+                *+footer {
+                  margin-top: 0 !important;
+                }
+
+                main,
+                .main-content {
+                  padding-bottom: 0 !important;
+                  margin-bottom: 0 !important;
+                }
+
+                /* Mobile glassmorphic tweaks */
+                .glassmorphic-card {
+                  backdrop-filter: blur(15px) saturate(160%) brightness(105%);
+                  -webkit-backdrop-filter: blur(15px) saturate(160%) brightness(105%);
+                }
+                .glassmorphic-badge {
+                  backdrop-filter: blur(8px) saturate(140%);
+                  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  }
+                .glassmorphic-button {
+                  backdrop-filter: blur(12px) saturate(150%);
+                  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  
 }
+                  }
 
-/* Fix mobile navbar overflow issues */
-@media (max-width: 768px) {
-
-  /* Ensure navbar container is flexible and contains all elements */
-  .rounded-xl.shadow-lg.border {
-    min-height: auto !important;
-    height: auto !important;
-    overflow: hidden !important;
-    padding: 8px 12px !important;
-  }
-
-  /* Make navbar content wrap properly */
-  .flex.items-center.justify-between {
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    min-height: 40px !important;
-  }
-
-  /* Navigation container - prevent overflow */
-  .flex.items-center.gap-1 {
-    flex-wrap: wrap !important;
-    gap: 2px !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-  }
-
-  /* Mobile nav links - compact sizing */
-  .px-2.py-1\.5.text-xs {
-    padding: 3px 6px !important;
-    font-size: 0.7rem !important;
-    white-space: nowrap !important;
-    min-width: 0 !important;
-    flex-shrink: 1 !important;
-  }
-
-  /* Ensure theme toggle doesn't overflow */
-  .ml-2 {
-    margin-left: 4px !important;
-    flex-shrink: 0 !important;
-  }
-
-  /* Adjust right side container */
-  .flex.items-center.gap-3 {
-    gap: 4px !important;
-    flex-wrap: wrap !important;
-    justify-content: flex-end !important;
-    max-width: 100% !important;
-  }
-}
-
-/* Very small screens - ultra compact */
+/* =========================================================
+   Extra Small Screens (<= 480px)
+   ======================================================= */
 @media (max-width: 480px) {
 
-  /* Even more compact navbar */
-  .rounded-xl.shadow-lg.border {
-    padding: 6px 8px !important;
-    margin: 4px !important;
-  }
+  .overflow-hidden.min-h-screen,
+    .min-h-screen {
+      padding-bottom: 4rem !important;
+    }
 
-  /* Stack navigation vertically if needed */
-  .flex.items-center.justify-between {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 4px !important;
-  }
+                nav.w-full.px-4 {
+                  margin-bottom: 3rem !important;
+                  padding-bottom: 3rem !important;
+                }
 
-  /* Navigation takes full width */
-  .flex.items-center.gap-1 {
-    width: 100% !important;
-    justify-content: center !important;
-    gap: 2px !important;
-  }
+                .max-w-6xl.lg\:max-w-7xl {
+                  margin-bottom: 4rem !important;
+                  padding-bottom: 3rem !important;
+                }
 
-  /* Ultra compact nav links */
-  .px-2.py-1\.5.text-xs {
-    padding: 2px 4px !important;
-    font-size: 0.65rem !important;
-  }
+                .bg-gradient-to-r.from-primary.to-secondary {
+                  padding: 0.25rem 0.75rem !important;
+                }
 
-  /* Center theme toggle */
-  .flex.items-center.gap-3 {
-    justify-content: center !important;
-    width: 100% !important;
-  }
+                footer.w-full.px-4.py-8 {
+                  padding-top: 0.5rem !important;
+                  margin-top: 0 !important;
+                }
+                footer.w-full.px-4.py-8 .container.mx-auto.max-w-7xl {
+                  margin-top: 0 !important;
+                  padding-top: 0 !important;
+                }
 }
 
-/* Extra small screens - minimal text */
-@media (max-width: 380px) {
+/* =========================================================
+   Career Timeline Layout (your overrides)
+   ======================================================= */
 
-  /* Abbreviate navigation text */
-  .px-2.py-1\.5.text-xs {
-    font-size: 0.6rem !important;
-    padding: 2px 3px !important;
-  }
-
-  /* Hide some text if too cramped */
-  nav a span {
-    max-width: 40px !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-  }
+/* Reduce left start offset to widen content area */
+.career-item-container {
+  margin-inline-start: 15px !important;
+  /* logical property for LTR/RTL */
 }
 
-/* Override any conflicting styles */
-@media (max-width: 768px) {
-
-  /* Remove fixed heights that cause overflow */
-  header>div {
-    height: auto !important;
-    min-height: auto !important;
-  }
-
-  /* Ensure container adapts to content */
-  .max-w-7xl {
-    width: 100% !important;
-    max-width: calc(100vw - 16px) !important;
-  }
-
-  /* Remove rigid spacing */
-  .gap-8 {
-    gap: 4px !important;
-  }
-
-  /* Flexible navigation */
-  nav {
-    flex: 1 !important;
-    min-width: 0 !important;
-  }
+/* Override Tailwind ms-[30px] which is margin-inline-start */
+.ms-\[30px\] {
+  margin-inline-start: 15px !important;
 }
 
-/* Landscape mobile orientation */
-@media (max-width: 768px) and (orientation: landscape) {
-
-  /* Keep horizontal layout in landscape */
-  .flex.items-center.justify-between {
-    flex-direction: row !important;
-  }
-
-  /* Compact but horizontal */
-  .px-2.py-1\.5.text-xs {
-    font-size: 0.65rem !important;
-    padding: 2px 4px !important;
-  }
+/* Wider cards without overflow */
+.career-card-full-width {
+  box-sizing: border-box;
+  width: min(100%, calc(100vw - 100px)) !important;
+  max-width: calc(100% - 50px) !important;
 }
 
-/* Desktop and larger tablets */
+/* Remove glassmorphism effect from date badges on desktop */
 @media (min-width: 769px) {
-
-  /* Reset mobile styles that should not apply */
-  .rounded-xl.shadow-lg.border {
-    border-radius: 0.5rem !important;
-    padding: 0.5rem 1rem !important;
-  }
-
-  .px-2.py-1\.5.text-xs {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.875rem !important;
-  }
-
-  .ml-2 {
-    margin-left: 0.5rem !important;
+  .career-card-full-width time.inline-flex {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 0.375rem !important;
+    /* rounded-md instead of rounded-full */
   }
 }
 
-/* Prevent horizontal scroll */
-html,
-body {
-  overflow-x: hidden !important;
-  max-width: 100vw !important;
-}
-
-/* Container max width fix */
-.max-w-6xl,
-.max-w-7xl {
-  max-width: calc(100vw - 32px) !important;
-}
-
-@media (min-width: 768px) {
-  .max-w-6xl {
-    max-width: 72rem !important;
+/* Mobile Career Layout - Keep Same Structure */
+@media (max-width: 768px) {
+  .ms-\[30px\] {
+      margin-inline-start: 10px !important;
   }
 
-  .max-w-7xl {
-    max-width: 80rem !important;
-  }
-}
-
-/* Enhanced glowing button effects */
-.group:hover .bg-gradient-to-r.from-orange-500 {
-  box-shadow:
-    0 0 20px rgba(249, 115, 22, 0.6),
-    0 0 40px rgba(236, 72, 153, 0.4),
-    0 0 60px rgba(147, 51, 234, 0.3),
-    0 4px 20px rgba(0, 0, 0, 0.2) !important;
-  filter: brightness(1.1) saturate(1.2);
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Glowing pulse animation */
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    box-shadow:
-      0 0 20px rgba(249, 115, 22, 0.6),
-      0 0 40px rgba(236, 72, 153, 0.4),
-      0 0 60px rgba(147, 51, 234, 0.3),
-      0 4px 20px rgba(0, 0, 0, 0.2);
+        .career-item-container {
+          margin-inline-start: 10px !important;
   }
 
-  50% {
-    box-shadow:
-      0 0 25px rgba(249, 115, 22, 0.8),
-      0 0 50px rgba(236, 72, 153, 0.6),
-      0 0 75px rgba(147, 51, 234, 0.5),
-      0 4px 25px rgba(0, 0, 0, 0.3);
+        .career-card-full-width {
+          width: min(100%, calc(100vw - 60px)) !important;
+          max-width: calc(100% - 30px) !important;
   }
+
+        /* Force consistent grid layout on mobile */
+        .career-card-full-width .grid.grid-cols-3 {
+          display: grid !important;
+          grid-template-columns: 2fr 1fr !important;
+          gap: 0.5rem !important;
+        }
+
+        .career-card-full-width .col-span-2 {
+          grid-column: span 1 !important;
+  }
+
+        .career-card-full-width .col-span-1 {
+          grid-column: span 1 !important;
+  }
+
+        .career-card-full-width .col-span-1 .inline-flex {
+          font-size: 0.65rem !important;
+          padding: 0.25rem 0.5rem !important;
+          white-space: nowrap !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          /* Remove glassmorphism on mobile */
+          background: transparent !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+          border-radius: 0.375rem !important;
+          border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .career-card-full-width h4 {
+          font-size: 0.875rem !important;
+          line-height: 1.2 !important;
+        }
 }
 
-/* Enhanced button hover states */
-.bg-gradient-to-r.from-orange-500.via-pink-500.to-purple-600 {
+@media (max-width: 480px) {
+  .ms-\[30px\] {
+      margin-inline-start: 8px !important;
+  }
+
+        .career-item-container {
+          margin-inline-start: 8px !important;
+  }
+
+        .career-card-full-width {
+          width: min(100%, calc(100vw - 40px)) !important;
+          max-width: calc(100% - 20px) !important;
+  }
+
+        /* Extra small screens - even more compact */
+        .career-card-full-width .grid.grid-cols-3 {
+          gap: 0.25rem !important;
+        }
+
+        .career-card-full-width .col-span-1 .inline-flex {
+          font-size: 0.6rem !important;
+          padding: 0.2rem 0.4rem !important;
+          /* Remove glassmorphism for extra small screens */
+          background: transparent !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+          border-radius: 0.375rem !important;
+          border: 1px solid rgba(255, 255, 255, 0.3) !important;
+          box-shadow: none !important;
+        }
+
+        .career-card-full-width h4 {
+          font-size: 0.8rem !important;
+        }
+/* =========================================================
+   Centered Career Layout
+   ======================================================= */
+
+/* Center career section content */
+.career-section-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Center career timeline container */
+.career-timeline-centered {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
 }
 
-.bg-gradient-to-r.from-orange-500.via-pink-500.to-purple-600:hover {
-  transform: scale(1.05);
-  filter: brightness(1.15) saturate(1.3);
+/* Ensure career items are properly centered */
+.career-item-centered {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* Glowing border effect */
-.bg-gradient-to-r.from-orange-500.via-pink-500.to-purple-600:hover::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg,
-      rgba(249, 115, 22, 0.8),
-      rgba(236, 72, 153, 0.8),
-      rgba(147, 51, 234, 0.8),
-      rgba(249, 115, 22, 0.8));
-  border-radius: inherit;
-  z-index: -1;
-  filter: blur(8px);
-  opacity: 0.7;
-  animation: rotate-glow 3s linear infinite;
+/* Center header content */
+.career-header-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
 }
 
-/* Rotating glow animation */
-@keyframes rotate-glow {
-  0% {
-    background: linear-gradient(45deg,
-        rgba(249, 115, 22, 0.8),
-        rgba(236, 72, 153, 0.8),
-        rgba(147, 51, 234, 0.8),
-        rgba(249, 115, 22, 0.8));
-  }
-
-  25% {
-    background: linear-gradient(135deg,
-        rgba(236, 72, 153, 0.8),
-        rgba(147, 51, 234, 0.8),
-        rgba(249, 115, 22, 0.8),
-        rgba(236, 72, 153, 0.8));
-  }
-
-  50% {
-    background: linear-gradient(225deg,
-        rgba(147, 51, 234, 0.8),
-        rgba(249, 115, 22, 0.8),
-        rgba(236, 72, 153, 0.8),
-        rgba(147, 51, 234, 0.8));
-  }
-
-  75% {
-    background: linear-gradient(315deg,
-        rgba(249, 115, 22, 0.8),
-        rgba(236, 72, 153, 0.8),
-        rgba(147, 51, 234, 0.8),
-        rgba(249, 115, 22, 0.8));
-  }
-
-  100% {
-    background: linear-gradient(45deg,
-        rgba(249, 115, 22, 0.8),
-        rgba(236, 72, 153, 0.8),
-        rgba(147, 51, 234, 0.8),
-        rgba(249, 115, 22, 0.8));
-  }
-}
-
-/* Enhanced yellow dot glow on button hover */
-.group:hover .bg-yellow-300 {
-  box-shadow:
-    0 0 10px rgba(253, 224, 71, 0.8),
-    0 0 20px rgba(253, 224, 71, 0.6),
-    0 0 30px rgba(253, 224, 71, 0.4) !important;
-  animation: dot-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes dot-pulse {
-
-  0%,
-  100% {
-    transform: scale(1);
-    box-shadow:
-      0 0 10px rgba(253, 224, 71, 0.8),
-      0 0 20px rgba(253, 224, 71, 0.6),
-      0 0 30px rgba(253, 224, 71, 0.4);
-  }
-
-  50% {
-    transform: scale(1.1);
-    box-shadow:
-      0 0 15px rgba(253, 224, 71, 1),
-      0 0 30px rgba(253, 224, 71, 0.8),
-      0 0 45px rgba(253, 224, 71, 0.6);
-  }
-}
-
-/* Mobile navbar fixes - ensure content stays inside */
+/* Responsive centering */
 @media (max-width: 768px) {
-
-  /* Ensure navbar container includes mobile nav */
-  .rounded-xl.shadow-lg.border {
-    overflow: visible !important;
-    padding-bottom: 1rem !important;
-  }
-
-  /* Mobile navigation container */
-  .md\:hidden.mt-3.pt-3 {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 8px !important;
-    padding: 8px !important;
-    margin: 12px -4px 0 -4px !important;
-  }
-
-  /* Mobile nav links styling */
-  .inline-block.px-3.py-1\.5 {
-    min-width: auto !important;
-    white-space: nowrap !important;
-    border-radius: 6px !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  }
-
-  /* Active link styling */
-  .bg-white\/25 {
-    background: rgba(255, 255, 255, 0.25) !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-  }
-
-  /* Border separator */
-  .border-t.border-white\/20 {
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    margin: 0 -8px !important;
-    padding-top: 12px !important;
-  }
-
-  /* Ensure proper spacing */
-  .flex.justify-center.flex-wrap {
-    gap: 8px !important;
-    padding: 4px !important;
-  }
+  .career-timeline-centered {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+                .career-item-centered {
+                  max-width: 100%;
+                }
+                .career-header-centered {
+                  max-width: 100%;
+                  padding: 0 1rem;
+                }
 }
 
-/* Mobile navbar - inline navigation */
-@media (max-width: 768px) {
+        @media (max-width: 480px) {
+    .career-timeline-centered {
+        padding: 0 0.5rem;
+      }
 
-  /* Ensure navbar container accommodates inline nav */
-  .rounded-xl.shadow-lg.border {
-    min-height: 60px !important;
-    padding: 12px !important;
-  }
-
-  /* Navigation flex layout on mobile */
-  .flex.items-center.gap-1 {
-    flex-wrap: wrap !important;
-    gap: 4px !important;
-  }
-
-  /* Mobile nav links styling - inline */
-  .px-2.py-1\.5.text-xs {
-    min-width: auto !important;
-    white-space: nowrap !important;
-    font-size: 0.75rem !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(10px) !important;
-  }
-
-  /* Active link styling on mobile */
-  .bg-white\/25 {
-    background: rgba(255, 255, 255, 0.25) !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-  }
-
-  /* Hover states */
-  .hover\:bg-white\/20 {
-    background: rgba(255, 255, 255, 0.2) !important;
-  }
-
-  /* Logo adjustments */
-  .text-white.font-bold.text-sm {
-    font-size: 0.875rem !important;
-  }
-
-  /* Theme toggle positioning */
-  .ml-2 {
-    margin-left: 8px !important;
-  }
+        .career-header-centered {
+          padding: 0 0.5rem;
 }
 
-/* Extra small screens - even more compact */
-@media (max-width: 480px) {
-  .px-2.py-1\.5.text-xs {
-    padding: 4px 8px !important;
-    font-size: 0.7rem !important;
-  }
+/* =========================================================
+   Career Extra Wide Layout
+   ======================================================= */
 
-  .flex.items-center.gap-1 {
-    gap: 2px !important;
-  }
-
-  /* Hide logo text on very small screens */
-  .text-white.font-bold.text-sm.md\:text-lg {
-    display: none !important;
-  }
-
-  .text-white.font-bold.text-sm {
-    display: none !important;
-  }
+/* Extra wide cards that span more of the screen */
+.career-card-extra-wide {
+  box-sizing: border-box;
+  width: min(100%, calc(100vw - 80px)) !important;
+  max-width: calc(100% - 40px) !important;
+}
+/* Reduce timeline spacing for more compact layout */
+.career-timeline-compact .ms-\[30px\] {
+  margin-inline-start: 12px !important;
 }
 
-/* Ensure proper responsive scaling */
-@media (min-width: 769px) {
-
-  /* Reset desktop styles */
-  .rounded-md.md\:rounded-none {
-    border-radius: 0 !important;
-    background: transparent !important;
-    border: none !important;
-  }
-
-  .bg-white\/10.md\:bg-transparent {
-    background: transparent !important;
-  }
-}
-
-/* Remove mobile glassy effects - make navbar identical to desktop */
-@media (max-width: 768px) {
-
-  /* Reset mobile nav styling to match desktop */
-  .px-2.py-1\.5.text-xs {
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    backdrop-filter: none !important;
-  }
-
-  /* Remove hover backgrounds on mobile */
-  .hover\:bg-white\/20 {
-    background: transparent !important;
-  }
-
-  /* Remove active state backgrounds */
-  .bg-white\/25 {
-    background: transparent !important;
-  }
-
-  .bg-white\/10 {
-    background: transparent !important;
-  }
-
-  /* Ensure no rounded corners */
-  .rounded-md {
-    border-radius: 0 !important;
-  }
-
-  /* Remove any additional mobile styling */
-  nav a,
-  nav .group {
-    background: transparent !important;
-    backdrop-filter: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-}
-
-/* Remove any existing mobile nav styling */
-@media (max-width: 768px) {
-
-  .inline-block.px-2,
-  .inline-block.px-3 {
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-}
-
-/* Fix social buttons getting cropped on mobile */
-@media (max-width: 768px) {
-
-  /* Hero section - ensure enough bottom spacing */
-  .overflow-hidden.min-h-screen {
-    padding-bottom: 3rem !important;
-    /* Add bottom padding */
-    min-height: auto !important;
-    /* Allow flexible height */
-  }
-
-  .min-h-screen {
-    padding-bottom: 3rem !important;
-    /* Add bottom padding */
-    min-height: auto !important;
-    /* Allow flexible height */
-  }
-
-  /* Social buttons container - prevent cropping */
-  nav.w-full.px-4,
-  .social-links-container {
-    margin-bottom: 2rem !important;
-    padding-bottom: 2rem !important;
-    z-index: 10 !important;
-    position: relative !important;
-  }
-
-  /* Individual social buttons - ensure visibility */
-  .bg-gradient-to-r.from-primary.to-secondary {
-    margin-bottom: 0.5rem !important;
-    position: relative !important;
-    z-index: 10 !important;
-  }
-
-  /* Hero container adjustments */
-  .max-w-6xl.lg\:max-w-7xl {
-    margin-bottom: 3rem !important;
-    /* Increased bottom margin */
-    padding-bottom: 2rem !important;
-  }
-
-  /* Flex container for social buttons */
-  .flex.flex-wrap.gap-2 {
-    margin-bottom: 2rem !important;
-    padding-bottom: 1rem !important;
-  }
-
-  /* Ensure next section doesn't overlap */
-  section:nth-child(2),
-  .about-section,
-  .next-section {
-    margin-top: 3rem !important;
-    position: relative !important;
-    z-index: 5 !important;
-  }
-}
-
-/* Very small screens - more bottom spacing */
-@media (max-width: 480px) {
-  .overflow-hidden.min-h-screen {
-    padding-bottom: 4rem !important;
-  }
-
-  .min-h-screen {
-    padding-bottom: 4rem !important;
-  }
-
-  nav.w-full.px-4 {
-    margin-bottom: 3rem !important;
-    padding-bottom: 3rem !important;
-  }
-
-  .max-w-6xl.lg\:max-w-7xl {
-    margin-bottom: 4rem !important;
-    padding-bottom: 3rem !important;
-  }
-}
-
-/* Ensure hero section has proper spacing */
-.relative.w-full.pt-8.pb-16,
-.relative.w-full.pt-20.pb-24,
-.relative.w-full.pt-16.pb-32 {
-  padding-bottom: 4rem !important;
-  /* Increased bottom padding */
-}
-
-@media (max-width: 768px) {
-
-  .relative.w-full.pt-8.pb-16,
-  .relative.w-full.pt-20.pb-24,
-  .relative.w-full.pt-16.pb-32 {
-    padding-bottom: 6rem !important;
-    /* Even more padding on mobile */
-  }
-}
-
-/* Prevent section overlap */
-section+section,
-.hero-section+section,
-.hero-section+div {
-  margin-top: 2rem !important;
-}
-
-@media (max-width: 768px) {
-
-  section+section,
-  .hero-section+section,
-  .hero-section+div {
-    margin-top: 4rem !important;
-    /* More space on mobile */
-  }
-}
-
-/* Specific fix for social buttons container */
-.social-buttons-wrapper {
-  margin-bottom: 3rem !important;
+.career-timeline-compact .border-s-2 {
   padding-bottom: 2rem !important;
-  position: relative !important;
-  z-index: 10 !important;
+}
 }
 
+/* Responsive extra wide adjustments */
 @media (max-width: 768px) {
-  .social-buttons-wrapper {
-    margin-bottom: 4rem !important;
-    padding-bottom: 3rem !important;
-  }
+  .career-card-extra-wide {
+      width: min(100%, calc(100vw - 50px)) !important;
+      max-width: calc(100% - 25px) !important;
+    }
+                .career-timeline-compact .ms-\[30px\] {
+                  margin-inline-start: 8px !important;
+}
 }
 
-/* Fix social button colors on mobile to match desktop */
-@media (max-width: 768px) {
-
-  /* Ensure gradient colors are consistent */
-  .bg-gradient-to-r.from-primary.to-secondary {
-    background: linear-gradient(to right, var(--color-primary), var(--color-secondary)) !important;
-    background: linear-gradient(to right, #1A2A80, #3B38A0) !important;
-    color: white !important;
-    border: none !important;
+@media (max-width: 480px) {
+  .career-card-extra-wide {
+    width: min(100%, calc(100vw - 30px)) !important;
+    max-width: calc(100% - 15px) !important;
   }
-
-  /* Override any mobile-specific button styling */
-  .flex.items-center.gap-1\.5 {
-    background: linear-gradient(to right, #1A2A80, #3B38A0) !important;
-    color: white !important;
-  }
-
-  /* Ensure text and icons are white */
-  .bg-gradient-to-r.from-primary.to-secondary span,
-  .bg-gradient-to-r.from-primary.to-secondary svg {
-    color: white !important;
-    stroke: white !important;
-    fill: white !important;
-  }
-
-  /* Force gradient background */
-  .rounded-full.bg-gradient-to-r {
-    background-image: linear-gradient(to right, #1A2A80, #3B38A0) !important;
-    background-color: transparent !important;
-  }
+  
+                .career-timeline-compact .ms-\[30px\] {
+                  margin-inline-start: 6px !important;
 }
 
-/* Ensure consistent button styling across all screen sizes */
-.bg-gradient-to-r.from-primary.to-secondary {
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary)) !important;
-  background: linear-gradient(to right, #1A2A80, #3B38A0) !important;
-  color: white !important;
-  border: none !important;
+/* Compact timeline dots positioning */
+.career-timeline-compact .absolute.size-4 {
+  margin-top: 6px !important;
 }
-
-/* Force white text and icons */
-.bg-gradient-to-r.from-primary.to-secondary * {
-  color: white !important;
-  stroke: white !important;
-}
-
-/* Override any conflicting styles */
-.bg-gradient-to-r.from-primary.to-secondary:hover {
-  background: linear-gradient(to right, #1A2A80, #3B38A0) !important;
-  filter: brightness(1.1) !important;
 }

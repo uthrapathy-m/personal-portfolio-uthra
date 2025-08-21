@@ -23,6 +23,6 @@ This portfolio is built using:
 
 ---
 
-## 🙌 Special Thanks
+## 🙌 Special Thanksaa
 
 **Big shoutout to [@emapeire](https://github.com/emapeire) for the original inspiration and template structure.**
