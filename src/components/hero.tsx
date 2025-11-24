@@ -242,7 +242,7 @@ export function Hero() {
           <div
             className="w-full flex flex-col font-mono gap-4 sm:gap-5 md:gap-6 text-white text-pretty p-4 sm:p-5 md:p-6 lg:p-8 rounded-2xl border border-white/20 shadow-2xl backdrop-blur-lg bg-gradient-to-br from-white/20 via-white/10 to-white/5"
           >
-            <h2 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent text-center sm:text-left leading-tight">
+            <h2 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-cyan-300 text-center sm:text-left leading-tight">
               {data.about.title}
             </h2>
             <div className="flex flex-col gap-4 sm:gap-5 text-sm sm:text-base md:text-lg leading-loose sm:leading-loose md:leading-loose opacity-90 text-white">
@@ -276,31 +276,77 @@ export function Hero() {
             </div>
           </div>
         </motion.div>
-        {/* Social Links: pill-shaped, accent color - Consistent styling */}
-        <div className="social-buttons-wrapper w-full px-3 sm:px-4 mb-6 sm:mb-8">
-          <nav className="w-full">
-            <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 justify-center max-w-full">
-              {data.links.map((link, index) => (
-                <motion.a
-                  key={link.title}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 * index }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-md hover:scale-105 transition-all duration-300 border-0 text-xs sm:text-sm min-w-0 flex-shrink-0 relative z-10"
-                >
-                  <link.icon className="size-4 sm:size-4 md:size-5 stroke-[1.5] text-white flex-shrink-0" />
-                  <span className="whitespace-nowrap">{link.title}</span>
-                </motion.a>
-              ))}
+        {/* Connect Section with Card-Style Social Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          className="w-full px-3 sm:px-4 mb-6 sm:mb-8"
+        >
+          <div className="w-full flex flex-col font-mono gap-6 text-white p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl backdrop-blur-lg bg-gradient-to-br from-white/20 via-white/10 to-white/5">
+            {/* Section Header */}
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-2xl sm:text-3xl">🤝</span>
+              <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
+                Let's Connect
+              </h3>
             </div>
-          </nav>
-        </div>
+
+            {/* Social Links Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+              {data.links.map((link, index) => {
+                // Define unique gradient and icon colors for each link
+                const linkStyles = {
+                  'GitHub': { gradient: 'from-gray-600 to-gray-800', iconBg: 'bg-gray-700', hoverShadow: 'hover:shadow-gray-500/50' },
+                  'LinkedIn': { gradient: 'from-blue-500 to-blue-700', iconBg: 'bg-blue-600', hoverShadow: 'hover:shadow-blue-500/50' },
+                  'Telegram': { gradient: 'from-sky-400 to-sky-600', iconBg: 'bg-sky-500', hoverShadow: 'hover:shadow-sky-500/50' },
+                  'Resume': { gradient: 'from-orange-500 to-orange-700', iconBg: 'bg-orange-600', hoverShadow: 'hover:shadow-orange-500/50' },
+                  'Email': { gradient: 'from-red-500 to-red-700', iconBg: 'bg-red-600', hoverShadow: 'hover:shadow-red-500/50' },
+                  'Portfolio': { gradient: 'from-purple-500 to-pink-600', iconBg: 'bg-purple-600', hoverShadow: 'hover:shadow-purple-500/50' }
+                }[link.title] || { gradient: 'from-purple-500 to-pink-500', iconBg: 'bg-purple-600', hoverShadow: 'hover:shadow-purple-500/50' }
+
+                return (
+                  <motion.a
+                    key={link.title}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.title}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    whileHover={{ y: -5, scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`group relative flex flex-col items-center gap-3 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300 hover:border-white/40 shadow-lg ${linkStyles.hoverShadow}`}
+                  >
+                    {/* Gradient overlay on hover */}
+                    <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${linkStyles.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+
+                    {/* Icon Container */}
+                    <div className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full ${linkStyles.iconBg} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}>
+                      <link.icon className="size-6 sm:size-7 text-white" />
+
+                      {/* Glow effect on hover */}
+                      <div className={`absolute inset-0 rounded-full ${linkStyles.iconBg} blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300`} />
+                    </div>
+
+                    {/* Link Title */}
+                    <span className="text-sm sm:text-base font-semibold text-white group-hover:text-cyan-300 transition-colors duration-300 text-center">
+                      {link.title}
+                    </span>
+
+                    {/* Hover indicator */}
+                    <motion.div
+                      className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                    />
+                  </motion.a>
+                )
+              })}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </motion.section>
   )
