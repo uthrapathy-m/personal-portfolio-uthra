@@ -31,20 +31,44 @@ export function Career() {
           </h2>
         </motion.div>
 
-        {/* 2-column grid layout */}
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8'>
-          {career.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="w-full"
-            >
-              <CareerItem {...item} id={index} />
-            </motion.div>
-          ))}
+        {/* Timeline roadmap layout */}
+        <div className='relative'>
+          {/* Vertical timeline line */}
+          <div className="absolute left-4 sm:left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-400 via-pink-400 to-cyan-400" />
+
+          {career.map((item, index) => {
+            const isEven = index % 2 === 0
+            // Extract year from the start date (e.g., "Jan, 2023" -> "2023")
+            const year = item.jobs[0]?.start.split(',')[1]?.trim() || item.jobs[0]?.start.split(' ')[1] || ''
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: isEven ? -50 : 50 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                viewport={{ once: false, amount: 0.3 }}
+                className={`relative flex items-center mb-12 sm:mb-16 last:mb-0 ${
+                  isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+              >
+                {/* Timeline year label */}
+                <div className="absolute left-4 sm:left-6 md:left-1/2 transform -translate-x-1/2 z-10">
+                  <div className="px-3 py-1 bg-gradient-to-r from-purple-500/90 to-pink-500/90 backdrop-blur-sm rounded-full shadow-lg">
+                    <span className="text-xs sm:text-sm font-bold text-white whitespace-nowrap">{year}</span>
+                  </div>
+                </div>
+
+                {/* Content container */}
+                <div className={`w-full md:w-[calc(50%-2rem)] ml-12 sm:ml-16 md:ml-0 ${
+                  isEven ? 'md:pr-12 lg:pr-16' : 'md:pl-12 lg:pl-16'
+                }`}>
+                  <CareerItem {...item} id={index} />
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </motion.section>
