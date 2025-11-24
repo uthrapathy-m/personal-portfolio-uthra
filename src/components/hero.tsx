@@ -240,10 +240,40 @@ export function Hero() {
           className="w-full px-3 sm:px-4 mb-4 sm:mb-6 md:mb-8"
         >
           <div
-            className="w-full flex flex-col font-mono gap-2 sm:gap-2.5 md:gap-3 text-white text-pretty p-4 sm:p-5 md:p-6 lg:p-8 rounded-2xl border border-white/20 shadow-2xl backdrop-blur-lg bg-gradient-to-br from-white/20 via-white/10 to-white/5"
+            className="w-full flex flex-col font-mono gap-4 sm:gap-5 md:gap-6 text-white text-pretty p-4 sm:p-5 md:p-6 lg:p-8 rounded-2xl border border-white/20 shadow-2xl backdrop-blur-lg bg-gradient-to-br from-white/20 via-white/10 to-white/5"
           >
-            <p className="font-semibold text-base sm:text-lg md:text-xl text-white">{data.about.title}</p>
-            <h3 className="text-sm sm:text-base md:text-lg leading-relaxed opacity-90 text-white">{data.about.description}</h3>
+            <h2 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent text-center sm:text-left leading-tight">
+              {data.about.title}
+            </h2>
+            <div className="flex flex-col gap-4 sm:gap-5 text-sm sm:text-base md:text-lg leading-loose sm:leading-loose md:leading-loose opacity-90 text-white">
+              {data.about.description.split('\n\n').map((paragraph, index) => {
+                // Add italics to key metrics and phrases
+                const formattedParagraph = paragraph
+                  .replace(/3\+ years/g, '<em class="text-cyan-300 not-italic font-semibold">3+ years</em>')
+                  .replace(/85%/g, '<em class="text-cyan-300 not-italic font-semibold">85%</em>')
+                  .replace(/99\.9% uptime/g, '<em class="text-cyan-300 not-italic font-semibold">99.9% uptime</em>')
+                  .replace(/40%/g, '<em class="text-cyan-300 not-italic font-semibold">40%</em>')
+                  .replace(/Kubernetes/g, '<em class="text-purple-300 not-italic">Kubernetes</em>')
+                  .replace(/Docker/g, '<em class="text-purple-300 not-italic">Docker</em>')
+                  .replace(/Terraform/g, '<em class="text-purple-300 not-italic">Terraform</em>')
+                  .replace(/Ansible/g, '<em class="text-purple-300 not-italic">Ansible</em>')
+                  .replace(/Jenkins/g, '<em class="text-purple-300 not-italic">Jenkins</em>')
+                  .replace(/AWS/g, '<em class="text-purple-300 not-italic">AWS</em>')
+                  .replace(/Azure/g, '<em class="text-purple-300 not-italic">Azure</em>')
+                  .replace(/GitOps/g, '<em class="text-pink-300 not-italic">GitOps</em>')
+
+                return (
+                  <motion.p
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    className="text-justify"
+                    dangerouslySetInnerHTML={{ __html: formattedParagraph }}
+                  />
+                )
+              })}
+            </div>
           </div>
         </motion.div>
         {/* Social Links: pill-shaped, accent color - Consistent styling */}
