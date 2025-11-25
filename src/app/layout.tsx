@@ -16,10 +16,6 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { cn } from '@/lib/utils'
 import './globals.css'
 
-import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
-
 const metadata: Metadata = {
   title: 'Portfolio | HARSHHAA',
   description: 'My Personal Portfolio - Showcasing my Work and Skills.'
@@ -30,12 +26,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [mounted, setMounted] = useState(false)
-  const pathname = usePathname()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   return (
     <html
@@ -58,22 +48,11 @@ export default function RootLayout({
           >
             <TooltipProvider>
               <Header />
-              <AnimatePresence mode='wait'>
-                {mounted && (
-                  <motion.main
-                    key={pathname}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="relative flex flex-col items-center justify-center w-full min-h-screen px-3 sm:px-4 md:px-6 lg:px-8 pt-4 pb-4 sm:pb-6 md:pb-8 isolate overflow-hidden
-                               before:absolute before:inset-0 before:-z-10 before:bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]
-                               before:from-purple-400/30 before:via-violet-400/10 before:to-transparent before:blur-3xl"
-                  >
-                    {children}
-                  </motion.main>
-                )}
-              </AnimatePresence>
+              <main className="relative flex flex-col items-center justify-center w-full min-h-screen px-3 sm:px-4 md:px-6 lg:px-8 pt-4 pb-4 sm:pb-6 md:pb-8 isolate overflow-hidden
+                             before:absolute before:inset-0 before:-z-10 before:bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]
+                             before:from-purple-400/30 before:via-violet-400/10 before:to-transparent before:blur-3xl">
+                {children}
+              </main>
             </TooltipProvider>
             <Toaster />
             <ToasterProvider />
