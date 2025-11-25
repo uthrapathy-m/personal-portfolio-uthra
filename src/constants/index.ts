@@ -18,7 +18,6 @@ export const data = {
 export const navLinks = [
   { title: 'About', label: 'about', url: '/' },
   { title: 'Career', label: 'career', url: '/career' },
-  { title: 'Blog', label: 'blog', url: 'https://blog.notharshhaa.site', external: true },
   { title: 'Projects', label: 'projects', url: '/projects' },
   { title: 'Contact', label: 'contact', url: '/contact' }
 ]

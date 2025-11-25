@@ -47,12 +47,12 @@ export function ContactForm() {
     }
   }
 
-  const inputStyles = `w-full px-4 py-3 border border-neutral-200 dark:border-neutral-800 
-    rounded-xl bg-white/50 dark:bg-neutral-900/50 text-black dark:text-white 
-    placeholder:text-neutral-400 dark:placeholder:text-neutral-500 
+  const inputStyles = `w-full px-4 py-3 border border-white/20
+    rounded-xl bg-white/10 text-white
+    placeholder:text-white/50
     transition-all duration-300 ease-in-out
-    focus:ring-2 focus:ring-primary/50 focus:border-primary
-    hover:border-primary/50 focus:outline-none
+    focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500
+    hover:border-purple-400/50 focus:outline-none
     backdrop-blur-sm`
 
   return (
@@ -64,17 +64,17 @@ export function ContactForm() {
     >
       <motion.form
         onSubmit={handleSubmit}
-        className="bg-white/80 dark:bg-black/40 backdrop-blur-xl border border-border/50 rounded-2xl shadow-lg p-8 space-y-6 transition-all duration-300 hover:shadow-xl"
+        className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-lg p-8 space-y-6 transition-all duration-300 hover:shadow-xl"
       >
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
+          <h2 className="text-2xl font-bold text-white mb-2">
             Get in Touch
           </h2>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-white/70">
             Please fill out the form below and I'll get back to you as soon as possible.
           </p>
         </motion.div>
@@ -85,8 +85,8 @@ export function ContactForm() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <label className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300">
-              First Name<span className="text-red-500 ml-1">*</span>
+            <label className="block text-sm font-medium mb-2 text-white/90">
+              First Name<span className="text-red-400 ml-1">*</span>
             </label>
             <input
               type="text"
@@ -115,7 +115,7 @@ export function ContactForm() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <label className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300">
+            <label className="block text-sm font-medium mb-2 text-white/90">
               Last Name
             </label>
             <input
@@ -134,7 +134,7 @@ export function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <label className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300">
+          <label className="block text-sm font-medium mb-2 text-white/90">
             Email<span className="text-red-500 ml-1">*</span>
           </label>
           <input
@@ -164,7 +164,7 @@ export function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <label className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300">
+          <label className="block text-sm font-medium mb-2 text-white/90">
             Message<span className="text-red-500 ml-1">*</span>
           </label>
           <textarea
@@ -194,10 +194,10 @@ export function ContactForm() {
           disabled={isSubmitting}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className={`w-full py-3 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2
+          className={`w-full py-3 rounded-xl font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2
             ${isSubmitting
-              ? 'bg-neutral-200 dark:bg-neutral-800 cursor-not-allowed text-neutral-500 dark:text-neutral-400'
-              : 'bg-primary text-white dark:text-black hover:bg-primary/90 shadow-lg hover:shadow-primary/25 dark:hover:bg-primary/80'
+              ? 'bg-white/20 cursor-not-allowed text-white/50'
+              : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70'
             }`}
         >
           {isSubmitting ? (

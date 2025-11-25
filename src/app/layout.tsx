@@ -7,7 +7,6 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Head } from '@/components/head'
 import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
 import { ThemeProvider } from '@/components/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
@@ -72,7 +71,6 @@ export default function RootLayout({
                                before:from-purple-400/30 before:via-violet-400/10 before:to-transparent before:blur-3xl"
                   >
                     {children}
-                    <Footer />
                   </motion.main>
                 )}
               </AnimatePresence>
