@@ -95,8 +95,8 @@ export function Contact() {
               </div>
               <div className="flex-1">
                 <h3 className="text-white/90 font-semibold mb-1">Email</h3>
-                <a href="mailto:uthrapathy.m@example.com" className="text-white/60 hover:text-cyan-300 transition-colors">
-                  uthrapathy.m@example.com
+                <a href="mailto:mail.uthrapathy@gmail.com" className="text-white/60 hover:text-cyan-300 transition-colors">
+                  mail.uthrapathy@gmail.com
                 </a>
               </div>
             </div>
@@ -115,7 +115,7 @@ export function Contact() {
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-4">
               <a
-                href="https://github.com/uthrapathym"
+                href="https://github.com/uthrapathy-m"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 hover:scale-110 transition-all duration-300"

@@ -69,27 +69,95 @@ export default function CareerDetailPage() {
       }
     }
 
-    // For work experiences
+    // For DevOps roles
+    if (careerItem.badges.includes('DevOps')) {
+      return {
+        overview: `Professional experience at ${careerItem.company}, focusing on DevOps engineering, cloud infrastructure automation, and managing scalable production systems. Responsible for infrastructure provisioning, containerized deployments, cost optimization, and system reliability.`,
+        achievements: [
+          "Successfully deployed and managed 3-tier applications on AWS/Azure",
+          "Implemented infrastructure as code using Terraform and Ansible",
+          "Set up comprehensive monitoring and alerting with Prometheus and Grafana",
+          "Optimized cloud costs through resource analysis and rightsizing",
+          "Maintained high system availability and performance"
+        ],
+        skills: [
+          "AWS/Azure Cloud Platforms",
+          "Docker & Kubernetes",
+          "Terraform & Ansible",
+          "Jenkins & GitHub Actions",
+          "Prometheus & Grafana",
+          "Python & Bash Scripting",
+          "CI/CD Pipelines",
+          "Infrastructure as Code",
+          "Cost Optimization",
+          "Linux Administration"
+        ],
+        impact: "Improved infrastructure reliability and deployment efficiency while reducing operational costs. Enabled teams to deploy applications faster with automated provisioning and monitoring systems."
+      }
+    }
+
+    // For Digital Marketing roles
+    if (careerItem.badges.includes('Digital Marketing')) {
+      return {
+        overview: `Professional experience at ${careerItem.company}, focusing on digital marketing strategy, campaign management, and performance optimization. Responsible for running multi-platform advertising campaigns and analyzing metrics to drive ROI.`,
+        achievements: [
+          "Successfully managed digital marketing campaigns across Google Ads and social media",
+          "Analyzed campaign performance using analytics tools to optimize ROI",
+          "Created effective content strategies and coordinated with creative teams",
+          "Improved website SEO and monitored traffic conversion metrics",
+          "Delivered consistent results through data-driven marketing decisions"
+        ],
+        skills: [
+          "Google Ads",
+          "Facebook Ads Manager",
+          "Google Analytics",
+          "SEO Optimization",
+          "Social Media Marketing",
+          "Content Strategy",
+          "Email Marketing",
+          "Content Marketing",
+          "Canva",
+          "Hootsuite",
+          "Campaign Analytics"
+        ],
+        impact: "Drove digital marketing initiatives that increased brand visibility and engagement. Optimized marketing spend through data analysis and performance tracking to achieve better campaign outcomes."
+      }
+    }
+
+    // For Social Media roles
+    if (careerItem.badges.includes('Social Media')) {
+      return {
+        overview: `Professional experience at ${careerItem.company}, focusing on social media management, content strategy, and community engagement. Responsible for managing brand presence across multiple platforms and growing audience engagement.`,
+        achievements: [
+          "Successfully managed social media accounts across multiple platforms",
+          "Developed and executed content strategies aligned with brand voice",
+          "Analyzed social metrics to inform strategy improvements",
+          "Coordinated influencer partnerships and user-generated content",
+          "Grew follower base through organic and paid strategies"
+        ],
+        skills: [
+          "Social Media Strategy",
+          "Community Management",
+          "Content Creation",
+          "Social Media Analytics",
+          "Data Analysis",
+          "Facebook Business Manager",
+          "Buffer",
+          "Hootsuite",
+          "Excel",
+          "Reporting",
+          "Social Listening Tools"
+        ],
+        impact: "Built and maintained strong social media presence that increased brand engagement and community growth. Provided data-driven insights that improved social media strategy and audience targeting."
+      }
+    }
+
+    // Default fallback
     return {
-      overview: `Professional experience at ${careerItem.company}, focusing on DevOps engineering, cloud infrastructure automation, and continuous integration/deployment pipelines. Responsible for managing scalable infrastructure and improving development workflows.`,
-      achievements: [
-        "Successfully migrated legacy infrastructure to cloud-native architecture",
-        "Reduced deployment time by 60% through automation",
-        "Implemented comprehensive monitoring and alerting systems",
-        "Mentored junior team members on DevOps best practices",
-        "Achieved 99.9% uptime for production services"
-      ],
-      skills: [
-        "AWS/Azure Cloud Platforms",
-        "Docker & Kubernetes",
-        "Terraform & Ansible",
-        "Jenkins & GitHub Actions",
-        "Prometheus & Grafana",
-        "Python & Bash Scripting",
-        "CI/CD Pipelines",
-        "Infrastructure as Code"
-      ],
-      impact: "Transformed development and deployment processes, enabling faster feature delivery and improved system reliability. Contributed to significant cost savings through infrastructure optimization."
+      overview: `Professional experience at ${careerItem.company}.`,
+      achievements: ["Contributed to team goals and objectives"],
+      skills: ["Professional Skills"],
+      impact: "Made meaningful contributions during tenure at the organization."
     }
   }
 
@@ -131,15 +199,20 @@ export default function CareerDetailPage() {
           <div className="flex flex-col gap-4 pb-6 border-b border-white/20">
             <div className="flex items-center gap-3">
               <span className="text-5xl md:text-6xl flex-shrink-0">{companyEmoji}</span>
-              <h1 className="text-3xl md:text-5xl font-bold text-purple-300">
-                {careerItem.company}
-              </h1>
+              <div className="flex-1">
+                <h1 className="text-3xl md:text-5xl font-bold text-purple-300">
+                  {careerItem.company}
+                </h1>
+                {careerItem.location && (
+                  <p className="text-base md:text-lg text-purple-200/70 mt-2">📍 {careerItem.location}</p>
+                )}
+              </div>
             </div>
             <Badge
               variant="secondary"
               className="w-fit rounded-full shadow-md bg-purple-500/20 text-purple-300 font-semibold px-4 py-2 text-sm border border-purple-400/40 backdrop-blur"
             >
-              {careerItem.badges}
+              {Array.isArray(careerItem.badges) ? careerItem.badges[0] : careerItem.badges}
             </Badge>
           </div>
 

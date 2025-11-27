@@ -21,7 +21,7 @@ const getCompanyEmoji = (id: number, badges: string | string[]) => {
   return companyEmojis[id % companyEmojis.length]
 }
 
-export function CareerItem({ link, company, jobs, badges, id }: CareerProps & { id: number }) {
+export function CareerItem({ link, company, location, jobs, badges, id }: CareerProps & { id: number }) {
   const companyEmoji = getCompanyEmoji(id, badges)
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -47,15 +47,20 @@ export function CareerItem({ link, company, jobs, badges, id }: CareerProps & { 
         <div className="flex flex-col gap-3 mb-5">
           <div className="flex items-center gap-2">
             <span className="text-2xl sm:text-3xl flex-shrink-0">{companyEmoji}</span>
-            <motion.h3
-              className="text-xl sm:text-2xl font-bold text-purple-300"
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              {company}
-            </motion.h3>
+            <div className="flex-1">
+              <motion.h3
+                className="text-xl sm:text-2xl font-bold text-purple-300"
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {company}
+              </motion.h3>
+              {location && (
+                <p className="text-xs sm:text-sm text-purple-200/70 mt-0.5">📍 {location}</p>
+              )}
+            </div>
           </div>
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -67,7 +72,7 @@ export function CareerItem({ link, company, jobs, badges, id }: CareerProps & { 
               variant="secondary"
               className="rounded-full shadow-md bg-purple-500/20 text-purple-300 font-semibold px-3 py-1.5 text-xs border border-purple-400/40 backdrop-blur"
             >
-              {badges}
+              {Array.isArray(badges) ? badges[0] : badges}
             </Badge>
           </motion.div>
         </div>

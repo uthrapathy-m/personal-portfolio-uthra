@@ -30,9 +30,21 @@ export interface JobsProps {
 
 export interface CareerProps {
   company: string
+  location?: string
   link?: string
   badges: string[]
   jobs: JobsProps[]
+}
+
+export interface EducationProps {
+  school: string
+  degree: string
+  start?: string
+  end?: string
+  year?: string
+  percentage?: string
+  location?: string
+  description: string[]
 }
 
 export interface TagsProps {
