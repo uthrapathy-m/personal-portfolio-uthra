@@ -1,7 +1,6 @@
-'use client'
-
 import { motion } from 'framer-motion'
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { data } from '@/constants'
 import {
   BriefcaseIcon,
@@ -37,10 +36,9 @@ export function generateStaticParams() {
   }))
 }
 
-export default function CareerDetailPage() {
-  const params = useParams()
+export default function CareerDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter()
-  const id = params.id as string
+  const id = params.id
 
   // Find the career item by index (id)
   const careerIndex = parseInt(id)
