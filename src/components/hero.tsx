@@ -213,7 +213,7 @@ export function Hero() {
               asChild
             >
               <a
-                href="https://linkedin.com/in/harshhaa-vardhan-reddy"
+                href="https://linkedin.com/in/uthrapathy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 sm:gap-3 relative z-10"

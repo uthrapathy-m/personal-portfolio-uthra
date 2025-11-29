@@ -123,7 +123,7 @@ export function Contact() {
                 <GithubIcon className="size-5 text-white/80" />
               </a>
               <a
-                href="https://linkedin.com/in/uthrapathy-m"
+                href="https://linkedin.com/in/uthrapathy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-500/10 hover:border-blue-500/30 hover:scale-110 transition-all duration-300"

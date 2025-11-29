@@ -42,7 +42,7 @@ export const LINKS = [
   },
   {
     title: 'LinkedIn',
-    url: 'https://linkedin.com/in/uthrapathy-m',
+    url: 'https://linkedin.com/in/uthrapathy',
     icon: LinkedInIcon
   },
   {

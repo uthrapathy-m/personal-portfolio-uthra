@@ -36,7 +36,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-white font-semibold hover:opacity-80 transition-all duration-300"
             >
-              H A R S H H A A
+              U T H R A P A T H Y
             </a>
             <span className="hidden sm:inline text-white/50">—</span>
             <span className="text-white/80">All rights reserved.</span>
