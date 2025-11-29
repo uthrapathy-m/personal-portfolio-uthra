@@ -30,41 +30,25 @@ export function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
               >
-                {link.external ? (
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.label}
-                    className="relative px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all duration-300 hover:bg-white/10 group"
-                  >
-                    <span className="relative z-10">{link.title}</span>
+                <Link
+                  href={link.url}
+                  aria-label={link.label}
+                  className={clsx(
+                    'relative px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 group',
+                    {
+                      'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/50': pathname === link.url,
+                      'text-white hover:bg-white/10': pathname !== link.url
+                    }
+                  )}
+                >
+                  <span className="relative z-10">{link.title}</span>
+                  {pathname !== link.url && (
                     <motion.div
                       className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       whileHover={{ scale: 1.05 }}
                     />
-                  </a>
-                ) : (
-                  <Link
-                    href={link.url}
-                    aria-label={link.label}
-                    className={clsx(
-                      'relative px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 group',
-                      {
-                        'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/50': pathname === link.url,
-                        'text-white hover:bg-white/10': pathname !== link.url
-                      }
-                    )}
-                  >
-                    <span className="relative z-10">{link.title}</span>
-                    {pathname !== link.url && (
-                      <motion.div
-                        className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        whileHover={{ scale: 1.05 }}
-                      />
-                    )}
-                  </Link>
-                )}
+                  )}
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -97,33 +81,20 @@ export function Header() {
                 animate={{ opacity: mobileMenuOpen ? 1 : 0, x: mobileMenuOpen ? 0 : -20 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
-                {link.external ? (
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.label}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block px-4 py-3 text-sm font-semibold text-white rounded-lg transition-all duration-300 hover:bg-white/10"
-                  >
-                    {link.title}
-                  </a>
-                ) : (
-                  <Link
-                    href={link.url}
-                    aria-label={link.label}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={clsx(
-                      'block px-4 py-3 text-sm font-semibold rounded-lg transition-all duration-300',
-                      {
-                        'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg': pathname === link.url,
-                        'text-white hover:bg-white/10': pathname !== link.url
-                      }
-                    )}
-                  >
-                    {link.title}
-                  </Link>
-                )}
+                <Link
+                  href={link.url}
+                  aria-label={link.label}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={clsx(
+                    'block px-4 py-3 text-sm font-semibold rounded-lg transition-all duration-300',
+                    {
+                      'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg': pathname === link.url,
+                      'text-white hover:bg-white/10': pathname !== link.url
+                    }
+                  )}
+                >
+                  {link.title}
+                </Link>
               </motion.div>
             ))}
           </div>
