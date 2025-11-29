@@ -31,6 +31,12 @@ const getCompanyEmoji = (id: number, badges: string | string[]) => {
   return companyEmojis[id % companyEmojis.length]
 }
 
+export function generateStaticParams() {
+  return data.career.map((_, index) => ({
+    id: index.toString()
+  }))
+}
+
 export default function CareerDetailPage() {
   const params = useParams()
   const router = useRouter()
